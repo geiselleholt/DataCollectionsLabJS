@@ -69,18 +69,17 @@ console.log(twoDArray);
 // Since the heading for each column will be stored in the object keys, you do not need to create an object for the heading row itself.
 
 let headers = twoDArray.splice(0, 1);
+let flatHeaders = headers.flat();
+
 let lowerHeaders = [];
-// headers[0].forEach((header) => {
-//   // let lowerHeader = header.toLowerCase();
-//   console.log(header.toLowerCase());
-//   // lowerHeaders.push(lowerHeader);
-// });
-// console.log(lowerHeaders)
+flatHeaders.forEach((header) => {
+  let lowerHeader = header.toLowerCase();
+  lowerHeaders.push(lowerHeader);
+});
 
 objectArray = [];
-
-for (i = 0; i < headers[0].length; i++) {
-  const dataObject = headers[0].reduce(
+for (i = 0; i < lowerHeaders.length; i++) {
+  const dataObject = lowerHeaders.reduce(
     (obj, key, index) => ({ ...obj, [key]: twoDArray[i][index] }),
     {}
   );
@@ -124,7 +123,12 @@ for (let i = 0; i < objectArray.length; i++) {
 
 let sum = 0;
 ages.forEach((age) => {
-  sum += age;
+  let numAge = +age
+  sum += numAge;
 });
 
-console.log(sum / ages.length);
+console.log(`The average age of the group is ${Math.floor(sum / ages.length)}`);
+
+// *********** PART 5 ***********
+
+console.log(`*********** PART 5 ***********`);
