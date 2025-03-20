@@ -1,4 +1,4 @@
-//************* PART 1- REFACTORING ***********
+//*********** PART 1 ***********
 // old code
 // let cell1 = "";
 // let cell2 = "";
@@ -35,7 +35,7 @@
 
 let str =
   "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
-console.log(`*****PART 1*****`)
+console.log(`*********** PART 1 ***********`);
 let columns = 0; //Part 2- Declare a variable that stores the number of columns in each row of data
 let twoDArray = []; //Part 2- initializing empty parent array
 
@@ -49,7 +49,7 @@ splitStr.forEach((row) => {
   console.log(cell1, cell2, cell3, cell4); //Part 1- printing results of refactoring
   columns = newRow.length; //Part 2- Calculating column number based on rows
 });
-console.log(`*****PART 2*****`)
+console.log(`********* PART 2 *********`);
 console.log(columns);
 console.log(twoDArray);
 
@@ -67,15 +67,64 @@ console.log(twoDArray);
 // Convert these keys to all lowercase letters for consistency. (let result = text.toLowerCase();)
 // Store these objects in an array, in the order that they were originally listed.
 // Since the heading for each column will be stored in the object keys, you do not need to create an object for the heading row itself.
-console.log(`******PART 3*****`)
-  
+
 let headers = twoDArray.splice(0, 1);
+let lowerHeaders = [];
+// headers[0].forEach((header) => {
+//   // let lowerHeader = header.toLowerCase();
+//   console.log(header.toLowerCase());
+//   // lowerHeaders.push(lowerHeader);
+// });
+// console.log(lowerHeaders)
+
 objectArray = [];
 
 for (i = 0; i < headers[0].length; i++) {
-  // headers[0][i].toLowerCase()
-  const dataObject = headers[0].reduce((obj, key, index) => ({ ...obj, [key]: twoDArray[i][index] }), {});
-  objectArray.push(dataObject)
-  }
-
+  const dataObject = headers[0].reduce(
+    (obj, key, index) => ({ ...obj, [key]: twoDArray[i][index] }),
+    {}
+  );
+  objectArray.push(dataObject);
+}
+console.log(`********* PART 3 **********`);
 console.log(objectArray);
+
+// *********** PART 4 ***********
+
+// 1. Remove the last element from the sorted array.
+// 2. Insert the following object at index 1:
+//    { id: "48", name: "Barry", occupation: "Runner", age: "25" }
+// 3. Add the following object to the end of the array:
+//    { id: "7", name: "Bilbo", occupation: "None", age: "111" }
+// 4. Finally, use the values of each object within the array and the array’s length property to calculate the average age of the group. This calculation should be accomplished using a loop.
+
+console.log(`*********** PART 4 ***********`);
+console.log(`1.`);
+objectArray.pop();
+console.log(objectArray);
+
+console.log(`2.`);
+objectArray.splice(1, 0, {
+  id: "48",
+  name: "Barry",
+  occupation: "Runner",
+  age: "25",
+});
+console.log(objectArray);
+
+console.log(`3.`);
+objectArray.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
+console.log(objectArray);
+
+console.log(`4.`);
+let ages = [];
+for (let i = 0; i < objectArray.length; i++) {
+  ages.push(objectArray[i].age);
+}
+
+let sum = 0;
+ages.forEach((age) => {
+  sum += age;
+});
+
+console.log(sum / ages.length);
