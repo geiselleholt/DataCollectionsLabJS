@@ -1,5 +1,7 @@
 //*********** PART 1 ***********
-// old code
+// Refactor old code using knowledge of arrays and objects
+
+// ***  OLD CODE ****
 // let cell1 = "";
 // let cell2 = "";
 // let cell3 = "";
@@ -33,9 +35,28 @@
 //   }
 // }
 
+// ***  NEW CODE ****
+// let splitStr = str.split("\n");
+
+// splitStr.forEach((row) => {
+//     newRow= row.split(',')
+//     let [cell1, cell2, cell3, cell4] = newRow
+//     console.log(cell1, cell2, cell3, cell4)
+// });
+
+// ********* PART 2 *********
+// Declare a variable that stores the number of columns in each row of data within the CSV.
+// Instead of hard-coding four columns per row, expand your code to accept any number of columns. This should be calculated dynamically based on the first row of data.
+
+// Store your results in a two-dimensional array.
+// Each row should be its own array, with individual entries for each column.
+// Each row should be stored in a parent array, with the heading row located at index 0.
+// Cache this two-dimensional array in a variable for later use.
+
+console.log(`*********** PART 1 ***********`);
 let str =
   "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
-console.log(`*********** PART 1 ***********`);
+
 let columns = 0; //Part 2- Declare a variable that stores the number of columns in each row of data
 let twoDArray = []; //Part 2- initializing empty parent array
 
@@ -50,17 +71,8 @@ splitStr.forEach((row) => {
   columns = newRow.length; //Part 2- Calculating column number based on rows
 });
 console.log(`********* PART 2 *********`);
-console.log(columns);
+console.log(`${columns} columns in each row`);
 console.log(twoDArray);
-
-// ********* PART 2 *********
-// Declare a variable that stores the number of columns in each row of data within the CSV.
-// Instead of hard-coding four columns per row, expand your code to accept any number of columns. This should be calculated dynamically based on the first row of data.
-
-// Store your results in a two-dimensional array.
-// Each row should be its own array, with individual entries for each column.
-// Each row should be stored in a parent array, with the heading row located at index 0.
-// Cache this two-dimensional array in a variable for later use.
 
 // ********* PART 3 **********
 // For each row of data in the result array produced by your code above, create an object where the key of each value is the heading for that value’s column.
@@ -89,7 +101,6 @@ console.log(`********* PART 3 **********`);
 console.log(objectArray);
 
 // *********** PART 4 ***********
-
 // 1. Remove the last element from the sorted array.
 // 2. Insert the following object at index 1:
 //    { id: "48", name: "Barry", occupation: "Runner", age: "25" }
@@ -123,12 +134,23 @@ for (let i = 0; i < objectArray.length; i++) {
 
 let sum = 0;
 ages.forEach((age) => {
-  let numAge = +age
+  let numAge = +age;
   sum += numAge;
 });
 
 console.log(`The average age of the group is ${Math.floor(sum / ages.length)}`);
 
 // *********** PART 5 ***********
+// As a final task, transform the final set of data back into CSV format.
 
 console.log(`*********** PART 5 ***********`);
+// Transform the final set of data back into CSV format.
+
+let cell1 = "ID,Name,Occupation,Age\n";
+
+fullCircleStr = ""
+objectArray.forEach((object) => {
+  fullCircleStr += Object.values(object);
+  fullCircleStr += "\n"
+});
+console.log(cell1 + fullCircleStr)
