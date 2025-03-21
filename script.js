@@ -70,6 +70,7 @@ splitStr.forEach((row) => {
   console.log(cell1, cell2, cell3, cell4); //Part 1- printing results of refactoring
   columns = newRow.length; //Part 2- Calculating column number based on rows
 });
+
 console.log(`********* PART 2 *********`);
 console.log(`${columns} columns in each row`);
 console.log(twoDArray);
@@ -80,25 +81,26 @@ console.log(twoDArray);
 // Store these objects in an array, in the order that they were originally listed.
 // Since the heading for each column will be stored in the object keys, you do not need to create an object for the heading row itself.
 
-let headers = twoDArray.splice(0, 1);
-let flatHeaders = headers.flat();
+let headers = twoDArray.splice(0, 1); //deletes the first array in twoDArray and saves it in the new variable headers (a 2D array)
+let flatHeaders = headers.flat(); //flattens headers into 1 array
 
-let lowerHeaders = [];
-flatHeaders.forEach((header) => {
-  let lowerHeader = header.toLowerCase();
-  lowerHeaders.push(lowerHeader);
+let lowerCaseHeaders = [];
+flatHeaders.forEach((header) => {   // iterates thru every string 'header' in the array 'flatHeaders'
+  let lowerCaseHeader = header.toLowerCase();  //changes all letters to lower case and saves the string into a new variable lowerCaseHeader
+  lowerCaseHeaders.push(lowerCaseHeader);    //pushes the lower case headers into a new array, lowerCaseHeaders [ 'id', 'name', 'occupation', 'age' ]
 });
 
-objectArray = [];
-for (i = 0; i < lowerHeaders.length; i++) {
-  const dataObject = lowerHeaders.reduce(
-    (obj, key, index) => ({ ...obj, [key]: twoDArray[i][index] }),
+let objectArray = [];
+for (i = 0; i < lowerCaseHeaders.length; i++) {  //will iterate thru every element of twoDArray using the 'lowerCaseHeader' length as the counter
+  const dataObject = lowerCaseHeaders.reduce(  // builds an object 'dataObject' with the 'lowerCaseHeader' as keys mapped to each element of the inner arrays of 'twoDArrays' as values
+    (obj, key, index) => ({ ...obj, [key]: twoDArray[i][index] }), 
     {}
   );
-  objectArray.push(dataObject);
+  objectArray.push(dataObject);  //pushes each new object 'dataObject' into the new array 'objectArray'
 }
+
 console.log(`********* PART 3 **********`);
-console.log(objectArray);
+console.log(objectArray); 
 
 // *********** PART 4 ***********
 // 1. Remove the last element from the sorted array.
@@ -134,23 +136,24 @@ for (let i = 0; i < objectArray.length; i++) {
 
 let sum = 0;
 ages.forEach((age) => {
-  let numAge = +age;
+  let numAge = +age; // changes string into number
   sum += numAge;
 });
 
-console.log(`The average age of the group is ${Math.floor(sum / ages.length)}`);
+console.log(`The average age of the group is ${Math.floor(sum / ages.length)}`);  //prints average as integer
 
 // *********** PART 5 ***********
 // As a final task, transform the final set of data back into CSV format.
 
-console.log(`*********** PART 5 ***********`);
 // Transform the final set of data back into CSV format.
 
 let cell1 = "ID,Name,Occupation,Age\n";
+let fullCircleStr = "";
 
-fullCircleStr = ""
 objectArray.forEach((object) => {
   fullCircleStr += Object.values(object);
-  fullCircleStr += "\n"
+  fullCircleStr += "\n";
 });
-console.log(cell1 + fullCircleStr)
+
+console.log(`*********** PART 5 ***********`);
+console.log(cell1 + fullCircleStr);
